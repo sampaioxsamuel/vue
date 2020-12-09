@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>VueJs</title>
+</head>
+<body>
+
+  <div id="app">
+    <p>Camisas - R$ {{preco}}, Quantidade de itens no carrinho - {{total}}</p>
+    <button @click="total++">Adicionar ao carrinho</button>
+    <button @click="total--">Remover do carrinho</button>
+    <p>Total: {{preco * total}}</p>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        preco: 49,
+        total: 0
+      },        
+    });
+    console.log(vm);
+  </script>
+</body>
+</html>
