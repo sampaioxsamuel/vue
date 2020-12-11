@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul>
+      <li v-for="item in lista">{{item}}</li>
+    </ul>
+    <button @click="removeItem">Remover</button>
+    <button @click="modificarItem">Modificar</button>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        lista: ["Item 1", "Item 2", "Item 3"]
+      },
+      methods: {
+        removeItem() {
+          this.lista.pop();
+        },
+        modificarItem() {
+          this.$set(this.lista, 2, "Item 4")
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul>
+      <li v-for="numero in (Math.floor(Math.random() * 20))">{{numero}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+      },
+      methods: {}
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>VueJs</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <h1>{{aapl.companyName}}</h1>
+    <p :style="{color: aapl.marketCap > googl.marketCap ? 'green': 'red'}">{{aapl.marketCap}}</p>
+    <h1>{{googl.companyName}}</h1>
+    <p :style="{color: googl.marketCap > aapl.marketCap ? 'green': 'red'}">{{googl.marketCap}}</p>
+    <button @click="puxarDados">Puxar Dados</button>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        aapl: '',
+        googl: '',
+        isLoaded: false,
+        aaplColorStock: 'red',
+        googlColorStock: 'red',
+      },
+      methods: {
+        getAapl() {
+          fetch('https://api.origamid.dev/stock/aapl/quote')
+            .then(response => response.json())
+            .then(json => {
+              this.aapl = json
+            })
+            .catch(err => this.aapl = err)
+          this.isLoaded = true;
+        },
+        getGoogl() {
+          fetch('https://api.origamid.dev/stock/googl/quote')
+            .then(response => response.json())
+            .then(json => {
+              this.googl = json
+            })
+        },
+        puxarDados() {
+          this.getAapl();
+          this.getGoogl();
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
+
+<!--
+  Utilizando as API's
+  https://api.origamid.dev/stock/aapl/quote
+  https://api.origamid.dev/stock/googl/quote
+
+  - Compare o marketCap (valor de
+  mercado) entre ambas.
+
+  - Mostre o nome das empresas e o valor
+  na interace (companyName e marketCap).
+
+  - Mude a cor para verde o nome da empresa com
+  maior marketCap e vermelho a com menor.
+-->

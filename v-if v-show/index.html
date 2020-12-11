@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>VueJs</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <h1>Quantidade de bananas: {{estoqueBananas}}</h1>
+    <p>Carrinho: {{quantidade}}</p>
+    <button v-show="estoqueBananas" @click="adicionarItem">Adicionar ao carrinho</button>
+    <button v-show="quantidade" @click="removerItem">Remover do carrinho</button>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        estoqueBananas: 7,
+        quantidade: 0,
+      },
+      methods: {
+        adicionarItem() {
+          this.estoqueBananas -= 1;
+          this.quantidade += 1;
+        },
+        removerItem() {
+          this.estoqueBananas += 1;
+          this.quantidade -= 1;
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>

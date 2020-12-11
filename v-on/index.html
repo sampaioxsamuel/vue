@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>VueJs</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul>
+      <li><a @click.prevent="handleFetch" href="https://api.origamid.dev/stock/aapl/quote">Apple</a></li>
+      <li><a @click.prevent="handleFetch" href="https://api.origamid.dev/stock/googl/quote">Google</a></li>
+      <li><a @click.prevent="handleFetch" href="https://api.origamid.dev/stock/amzn/quote">Amazon</a></li>
+      <li><a @click.prevent="handleFetch" href="https://api.origamid.dev/stock/ebay/quote">Ebay</a></li>
+      <li><a @click.prevent="handleFetch" href="https://api.origamid.dev/stock/pypl/quote">Paypal</a></li>
+    </ul>
+    <div>
+      <p>Nome da empresa: {{dados.companyName}}</p>
+      <p>Valor da ação: {{dados.latestPrice}}</p>
+      <p>Valor do mercado: {{dados.marketCap}}</p>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        dados: '',
+        companyName: '',
+        latestPrice: '',
+        marketCap: '',
+      },
+      methods: {
+        handleFetch(e) {
+          fetch(e.target.href)
+            .then(response => response.json())
+            .then(json => {
+              //   this.companyName = json.companyName
+              //   this.latestPrice = json.latestPrice
+              //   this.marketCap = json.marketCap
+              this.dados = json
+            })
+            .catch(err => {
+              throw new Error(err);
+            })
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>

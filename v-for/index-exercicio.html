@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul v-if="isLoaded">
+      <li v-for="local, key in locals">{{key}}: {{local}}</li>
+    </ul>
+    <button @click="fetchCep">Carregar dados</button>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        locals: '',
+        isLoaded: false
+      },
+      methods: {
+        fetchCep() {
+          fetch('https://viacep.com.br/ws/04538133/json/')
+          .then(response => response.json())
+          .then(json => {
+            this.locals = json
+            this.isLoaded = true;
+          })
+          .catch(err => console.error(err))
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
