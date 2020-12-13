@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <!-- Você possui o nome e sobrenome do usuário em data, -->
+  <!-- crie uma propriedade computed que retorne o nome completo -->
+  <div id="app">
+    {{nomeCompleto}}
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        nome: 'Samuel ',
+        sobrenome: 'Sampaio'
+      },
+      computed: {
+        nomeCompleto() {
+          return `${this.nome} ${this.sobrenome}`
+        }
+      },
+      watch: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul>
+      <li v-for="carro in carrosAzuis">{{carro.marca}},  {{carro.cor}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        preco: 50,
+        desconto: 10,
+        carros: [
+          {
+            marca: "VW",
+            cor: "Azul"
+          },
+          {
+            marca: "Ford",
+            cor: "Preto"
+          },
+          {
+            marca: "Tesla",
+            cor: "Azul"
+          }
+        ]
+      },
+      computed: {
+        total() {
+          return "R$ " + (this.preco - this.desconto);
+        },
+        carrosAzuis() {
+          return this.carros.filter(carro => carro.cor === "Azul");
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

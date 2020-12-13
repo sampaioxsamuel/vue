@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <!-- Utilize a rest API para puxar as capitais dos paises
+  Use um campo de select, onde o usuário pode selecionar o país.
+  https://restcountries.eu/rest/v2/all
+
+  Com uma função watch, mude a capital de acordo com o país selecionado: -->
+
+  <div id="app">
+    <h1>{{pais.capital}}</h1>
+    <select name="paises" v-model="selecionado" id="paises">
+      <option v-for="pais in paises" :value="pais.name">
+        {{pais.name}}
+      </option>
+    </select>
+    <button @click="fetchPaises">Carregar Paises</button>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        selecionado: '',
+        paises: '',
+        pais: ''
+      },
+      methods: {
+        fetchPaises() {
+          fetch('https://restcountries.eu/rest/v2/all')
+          .then(r => r.json())
+          .then(json => this.paises = json)
+        }
+      },
+      watch: {
+        selecionado(value) {
+          this.pais = this.paises.find(pais => pais.name === value)      
+        }
+      }, 
+    })
+  </script>
+</body>
+
+</html>

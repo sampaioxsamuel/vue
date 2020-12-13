@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <input v-model="cep" placeholder="Digite o CEP" maxlength="8" />
+    <ul>
+      <li v-for="(value, key) in endereco">{{key}}: {{value}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        cep: '',
+        endereco: {}
+      },
+      computed: {
+      },
+      methods: {
+        fetchCep(cep) {
+          fetch(`https://viacep.com.br/ws/${cep}/json/`)
+          .then(r => r.json())
+          .then(json => this.endereco = json)
+        }
+      }, 
+      watch: {
+        cep() {
+          if(this.cep.length === 8) {
+            this.fetchCep(this.cep);
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
