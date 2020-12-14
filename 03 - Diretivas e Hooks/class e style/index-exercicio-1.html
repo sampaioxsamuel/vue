@@ -8,30 +8,24 @@
   <script src="vue.js"></script>
 </head>
 
-<!-- Crie um gerador de cores, toda vez que o usuário clicar
-<!-- em cima da lista, os itens trocam de cor. -->
-
 <body>
   <div id="app">
-    <ul @click="gerarCor">
-      <li :style="{background: cor}">Sobre</li>
-      <li :style="{background: cor}">Produtos</li>
-      <li :style="{background: cor}">Serviços</li>
-      <li :style="{background: cor}">Contato</li>
+    <ul :class="{column: mudarOrientacao}">
+      <li>Sobre</li>
+      <li>Produtos</li>
+      <li>Serviços</li>
+      <li>Contato</li>
     </ul>
+    <button @click="mudarOrientacao = !mudarOrientacao">Troca Orientação</button>
   </div>
 
   <script>
     const vm = new Vue({
       el: "#app",
       data: {
-        cor: '',
+        orietacao: "column",
+        mudarOrientacao: false,
       },
-      methods: {
-        gerarCor() {
-          this.cor = `hsl(${Math.random() * 360}, 100%, 50%)`
-        }
-      }
     })
   </script>
   <style>

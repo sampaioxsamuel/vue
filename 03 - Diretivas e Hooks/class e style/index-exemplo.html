@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p :class="{title: textoAtivo }">Classe Title</p>
+    <p :class="[texto, background]">Ola</p>
+    <button @click="textoAtivo = !textoAtivo">Ativar</button>
+    <br /><br/>
+    <a :style="{color: cor, fontSize: size + 'rem'}">Etilizar Link</a>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        texto: "title",
+        background: "black",
+        textoAtivo: true,
+        cor: "crimson",
+        size: 2
+      }, 
+    })
+  </script>
+  <style>
+    .title {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 2rem;
+      color: rebeccapurple;
+      margin: 0;
+      padding: 0;
+    }
+    .black {
+      background: black;
+    }
+  </style>
+</body>
+
+</html>
