@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <form @submit.prevent>
+      <input type="text" v-model.lazy="info.nome" placeholder="Nome" />
+      <input type="email" v-model.lazy="info.email" placeholder="Email" />
+      <input type="text" v-model.number.lazy="info.telefone" placeholder="Telefone" />
+      <textarea type="text" v-model.lazy="info.mensagem" placeholder="Mensagem"></textarea>
+      <button @click="enviarInfos">Enviar Informacoes</button>
+    </form>
+    <div v-if="sent">
+      <h2>{{info.nome}}</h2>
+      <p>{{info.email}}</p>
+      <p>{{info.telefone}}</p>
+      <p>{{info.mensagem}}</p>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        info: {},
+        sent: false 
+      },
+      methods: {
+        enviarInfos() {
+          return this.sent = true;
+        }
+      }
+    })
+  </script>
+  <style>
+    form {
+      margin: 2rem 0;
+    }
+    input, textarea {
+      display: block;
+      margin: 0.5rem 0;
+    }
+  </style>
+</body>
+
+</html>

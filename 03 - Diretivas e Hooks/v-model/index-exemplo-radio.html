@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJs</title>
+  <script src="vue.js"></script>
+</head>
+
+
+
+<body>
+  <div id="app">
+    <p>Cor preferida</p>
+    <label for="verde">Verde</label>
+    <input type="radio" v-model="cor" value="verde" id="verde">
+    <label for="vermelho">Vermelho</label>
+    <input type="radio" v-model="cor" value="vermelho" id="vermelho">
+    <label for="azul">Azul</label>
+    <input type="radio" v-model="cor" value="azul" id="azul">
+    <p>{{cor}}</p>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        cor: ''
+      },
+    })
+  </script>
+</body>
+
+</html>
